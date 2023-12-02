@@ -8,6 +8,7 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +37,17 @@ public class FlatService {
         }
 
         return "Земля круглая";
+    }
+
+    public Flat getFlat(Long id){
+        return flatsRepository.findById(id).orElseThrow();
+    }
+
+    public Flat updateFlat(Flat flat){
+        return flatsRepository.save(flat);
+    }
+
+    public void deleteFlat(Long id){
+        flatsRepository.deleteById(id);
     }
 }
